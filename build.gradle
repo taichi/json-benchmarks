@@ -1,0 +1,68 @@
+plugins {
+	id 'java'
+	id 'eclipse'
+	id 'com.github.johnrengelman.shadow' version '1.2.2'
+	id 'me.champeau.gradle.jmh' version '0.2.0'
+	id 'net.ltgt.apt' version '0.3'
+}
+
+repositories {
+	jcenter()
+	mavenCentral()
+}
+
+sourceCompatibility = targetCompatibility = 1.8
+
+tasks.withType(AbstractCompile)*.options*.encoding = "UTF-8"
+
+jmh {
+	jmhVersion = '1.10.+'
+	timeUnit = 'ms'
+	fork = 2
+	iterations = 10
+	warmupIterations = 10
+	include = '.*Benchmark'
+}
+//tasks.jmh.main = 'json.benchmark.BenchmarkBase' // for testing
+
+jmhJar {
+	manifest.attributes 'Main-Class': tasks.jmh.main
+	append 'META-INF/BenchmarkList'
+	append 'META-INF/CompilerHints'
+	append 'META-INF/services/com.google.gson.TypeAdapterFactory'
+	append 'META-INF/services/com.squareup.moshi.JsonAdapter$Factory'
+}
+
+dependencies {
+	compile "com.google.code.gson:gson:2.3.1"
+	
+	compile "com.fasterxml.jackson.core:jackson-databind:2.5.1"
+	compile "com.fasterxml.jackson.core:jackson-annotations:2.5.1"
+	compile "com.fasterxml.jackson.datatype:jackson-datatype-guava:2.5.1"
+	
+	compile "io.fastjson:boon:0.33"
+	
+	compile "com.squareup.moshi:moshi:0.9.0"
+	
+	compileOnly "com.google.auto.value:auto-value:1.1"
+	apt "com.google.auto.value:auto-value:1.1"
+	
+	compileOnly "org.immutables:value:2.0.18"
+	apt "org.immutables:value:2.0.18"
+	compile "org.immutables:gson:2.0.18"
+	compile "org.immutables:cases:2.0.18"
+	
+	compile "com.bluelinelabs:logansquare:1.1.0"
+	apt "com.bluelinelabs:logansquare-compiler:1.1.0"
+
+	compile "org.openjdk.jmh:jmh-core:${jmh.jmhVersion}"
+	apt "org.openjdk.jmh:jmh-generator-annprocess:${jmh.jmhVersion}"
+}
+
+eclipse {
+	classpath {
+		containers = [
+			'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+		]
+	}
+}
