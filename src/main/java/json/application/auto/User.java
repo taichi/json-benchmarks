@@ -64,44 +64,61 @@ public abstract class User {
 	@JsonProperty("_id")
 	public abstract String id();
 
+	@JsonProperty
 	public abstract int index();
 
+	@JsonProperty
 	public abstract String guid();
 
 	@JsonProperty("is_active")
 	public abstract boolean isActive();
 
+	@JsonProperty
 	public abstract String balance();
 
 	@JsonProperty("picture")
 	public abstract String pictureUrl();
 
+	@JsonProperty
 	public abstract int age();
 
+	@JsonProperty
 	public abstract Name name();
 
+	@JsonProperty
 	public abstract String company();
 
+	@JsonProperty
 	public abstract String email();
 
+	@JsonProperty
 	public abstract String address();
 
+	@JsonProperty
 	public abstract String about();
 
+	@JsonProperty
 	public abstract String registered();
 
+	@JsonProperty
 	public abstract double latitude();
 
+	@JsonProperty
 	public abstract double longitude();
 
+	@JsonProperty
 	public abstract List<String> tags();
 
+	@JsonProperty
 	public abstract List<Integer> range();
 
+	@JsonProperty
 	public abstract List<Friend> friends();
 
+	@JsonProperty
 	public abstract List<Image> images();
 
+	@JsonProperty
 	public abstract String greeting();
 
 	@JsonProperty("favorite_fruit")
@@ -110,6 +127,7 @@ public abstract class User {
 	@JsonProperty("eye_color")
 	public abstract String eyeColor();
 
+	@JsonProperty
 	public abstract String phone();
 
 	public static Builder builder() {

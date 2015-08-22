@@ -12,8 +12,10 @@ public abstract class Friend {
 		return builder().id(id).name(name).build();
 	}
 
+	@JsonProperty
 	public abstract int id();
 
+	@JsonProperty
 	public abstract String name();
 
 	public static Builder builder() {

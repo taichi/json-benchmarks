@@ -15,12 +15,16 @@ public abstract class Image {
 		return builder().id(id).format(format).url(url).description(description).build();
 	}
 
+	@JsonProperty
 	public abstract String id();
 
+	@JsonProperty
 	public abstract String format();
 
+	@JsonProperty
 	public abstract String url();
 
+	@JsonProperty
 	public abstract String description();
 
 	public static Builder builder() {

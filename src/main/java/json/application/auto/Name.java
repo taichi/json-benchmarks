@@ -12,8 +12,10 @@ public abstract class Name {
 		return builder().first(first).last(last).build();
 	}
 
+	@JsonProperty
 	public abstract String first();
 
+	@JsonProperty
 	public abstract String last();
 
 	public static Builder builder() {
